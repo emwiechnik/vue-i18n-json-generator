@@ -12,16 +12,15 @@ namespace Translations.Tests
   {
     [Theory]
     [MemberData(nameof(CorrectTestDataSets))]
-    public void Generate_Output_That_Is_Equivalent_To_Input(IEnumerable<TranslationEntity> input)
+    public void Generate_Output_That_Reflects_The_Input(IEnumerable<TranslationEntity> input)
     {
       // Arrange
       var subject = new TranslationJsonGenerator();
 
       // Act 
-      var intermediateResult = subject.CreateTranslationsObject(input.ToList());
-      var serializedObj = JsonConvert.SerializeObject(intermediateResult.Value);
-      var deserializedObj = JsonConvert.DeserializeObject<JObject>(serializedObj);
-      var output = GetTranslations(deserializedObj);
+      var jsonResult = subject.GenerateJsonString(input.ToList());
+      var objFromJson = JsonConvert.DeserializeObject<JObject>(jsonResult.Value);
+      var output = GetTranslations(objFromJson);
 
       // Assert
       output.Should().BeEquivalentTo(input);
@@ -35,7 +34,7 @@ namespace Translations.Tests
       var subject = new TranslationJsonGenerator();
 
       // Act 
-      var intermediateResult = subject.CreateTranslationsObject(input.ToList());
+      var intermediateResult = subject.GenerateJsonString(input.ToList());
 
       // Assert
       intermediateResult.IsSuccess.Should().Be(isValid);
@@ -49,7 +48,7 @@ namespace Translations.Tests
       var subject = new TranslationJsonGenerator();
 
       // Act 
-      var intermediateResult = subject.CreateTranslationsObject(input.ToList());
+      var intermediateResult = subject.GenerateJsonString(input.ToList());
 
       // Assert
       if (!intermediateResult.IsSuccess)
