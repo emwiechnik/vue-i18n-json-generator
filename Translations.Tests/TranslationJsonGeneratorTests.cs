@@ -73,19 +73,19 @@ namespace Translations.Tests
         new []
         {
           new [] {
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.personalSettings"), Text = "Personal settings" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.agreementsAndRules"), Text = "Agreements and rules" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.businessCard"), Text = "Business card" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.bannersArea.smallBanners.tipsAndTricks"), Text = "Tips" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.bannersArea.smallBanners.specialOffers"), Text = "Offers" }
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.buttons.readMore"), Text = "Read more" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.tooltips.goToChat"), Text = "Click to chat with [personName]" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("dataTable.noDataAvailableText"), Text = "No data available" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("dataTable.noSearchResults"), Text = "Could not find any matching data" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("dataTable.search"), Text = "Search..." }
           }
         },
         new []
         {
           new [] {
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.personalSettings"), Text = "Personal settings" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.agreementsAndRules"), Text = "Agreements and rules" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("adminDashboard.tabs.admin.adminChat"), Text = "Chat" }
+            new TranslationEntity { Placeholder = new PlaceholderEntity("admin.admin.tabs.adminData.admin"), Text = "Value1" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("dataTable.data.table.data"), Text = "Value2" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("admin.chat.buttons.send.description"), Text = "Value3" }
           }
         },
         new []
@@ -108,26 +108,26 @@ namespace Translations.Tests
         new object []
         {
           new [] {
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard,tabs.personalSettings"), Text = "Personal settings" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.agreementsAndRules"), Text = "Agreements and rules" }
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common,buttons.readMore"), Text = "Read more" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.tooltips.goToChat"), Text = "Click to chat with [personName]" }
           },
           false,
-          "Placeholder 'mainDashboard,tabs.personalSettings' contains forbidden characters"
+          "Placeholder 'common,buttons.readMore' has invalid format or contains forbidden characters"
         },
         new object []
         {
           new [] {
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.personalSettings"), Text = "Personal settings" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs;agreementsAndRules"), Text = "Agreements and rules" }
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.buttons.readMore"), Text = "Read more" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.tooltips;goToChat"), Text = "Click to chat with [personName]" }
           },
           false,
-          "Placeholder 'mainDashboard.tabs;agreementsAndRules' contains forbidden characters"
+          "Placeholder 'common.tooltips;goToChat' has invalid format or contains forbidden characters"
         },
         new object []
         {
           new [] {
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.personalSettings"), Text = "Personal settings" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.agreementsAndRules"), Text = "Agreements and rules" }
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.buttons.readMore"), Text = "Read more" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.tooltips.goToChat"), Text = "Click to chat with [personName]" }
           },
           true,
           string.Empty
@@ -135,22 +135,31 @@ namespace Translations.Tests
         new object []
         {
           new [] {
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.personalSettings"), Text = "Personal settings" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs/agreementsAndRules"), Text = "Agreements and rules" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs;bus]inessCard"), Text = "Agreements and rules" }
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.buttons.readMore"), Text = "Read more" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("common.tooltips/goToChat"), Text = "Click to chat with [personName]" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("dataTable.noDataAvailableText"), Text = "No data available" }
           },
           false,
-          "Placeholder 'mainDashboard.tabs/agreementsAndRules' contains forbidden characters"
+          "Placeholder 'common.tooltips/goToChat' has invalid format or contains forbidden characters"
         },
         new object []
         {
           new [] {
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.otherSettings"), Text = "Personal settings" },
-            new TranslationEntity { Placeholder = new PlaceholderEntity("mainDashboard.tabs.yetSomeOtherTab"), Text = "Agreements and rules" }
+            new TranslationEntity { Placeholder = new PlaceholderEntity("some.thing.nested.in.a.nested.some.thing"), Text = "A thing" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("thing.some.nested.a.in.nested.thing.some"), Text = "Something" }
           },
           true,
           string.Empty
         },
+        new object []
+        {
+          new [] {
+            new TranslationEntity { Placeholder = new PlaceholderEntity("some.thing..nested.in.a.nested.some.thing"), Text = "A thing" },
+            new TranslationEntity { Placeholder = new PlaceholderEntity("thing.some.nested.a.in.nested.thing.some"), Text = "Something" }
+          },
+          false,
+          "Placeholder 'some.thing..nested.in.a.nested.some.thing' has invalid format or contains forbidden characters"
+        }
       };
   }
 }
